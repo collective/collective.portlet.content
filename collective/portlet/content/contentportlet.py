@@ -5,8 +5,6 @@ from plone.app.portlets.portlets import base
 
 from zope import schema
 from zope.formlib import form
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from zope.app.component.hooks import getSite
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
@@ -25,6 +23,7 @@ from plone.memoize import instance
 
 from collective.portlet.content import ContentPortletMessageFactory as _
 
+
 class IContentPortlet(IPortletDataProvider):
     """A portlet
 
@@ -32,13 +31,13 @@ class IContentPortlet(IPortletDataProvider):
     data that is being rendered and the portlet assignment itself are the
     same.
     """
-    
+
     portlet_title = schema.TextLine(
         title=_(u'Portlet Title'),
         description=_('help_portlet_title',
                       default=u'Enter a title for this portlet. '
-                               "This property is used as the portlet's title in "
-                               'the "@@manage-portlets" screen. '
+                               "This property is used as the portlet's title "
+                               'in the "@@manage-portlets" screen. '
                                'Leave blank for "Content portlet".'),
         required=False,
     )
@@ -46,18 +45,19 @@ class IContentPortlet(IPortletDataProvider):
     custom_header = schema.TextLine(
         title=_(u"Portlet header"),
         description=_('help_custom_header',
-                      default=u"Set a custom header (title) for the rendered portlet. "
-                               "Leave empty to use the selected content's title."),
+                      default=u"Set a custom header (title) for the rendered "
+                              u"portlet. Leave empty to use the selected "
+                              u"content's title."),
         required=False,
     )
 
     title_display = schema.Choice(
         title=_(u'Item Title in portlet content'),
-        description = _('help_title_display',
-                        default=u"Do you want to render the item's title inside the "
-                                 "portlet content, and if yes, how?\n"
-                                 "Note that by default, the item's title will be "
-                                 "displayed in the portlet header."),
+        description=_('help_title_display',
+                      default=u"Do you want to render the item's title inside "
+                              u"the portlet content, and if yes, how?\n"
+                              u"Note that by default, the item's title will "
+                              u"be displayed in the portlet header."),
         vocabulary='collective.portlet.content.title_display_vocabulary',
         default=u'hidden',
         required=True,
@@ -69,27 +69,26 @@ class IContentPortlet(IPortletDataProvider):
             default_query='path:'
         )
     )
-                            
-   
+
     item_display = schema.List(
         title=_(u'Item Display'),
-        description = _('help_item_display',
-                        default=u"Select which of the selected item's fields will "
-                                "be displayed in the portlet's content area. "
-                                "Note that selecting Body (text) will not work for "
-                                "an Image."),
+        description=_('help_item_display',
+                      default=u"Select which of the selected item's fields "
+                              u"will be displayed in the portlet's content "
+                              u"area. Note that selecting Body (text) will "
+                              u"not work for an Image."),
         value_type=schema.Choice(
             vocabulary='collective.portlet.content.item_display_vocabulary',
         ),
         default=[u'date', u'image', u'description', u'body'],
         required=False,
     )
-    
+
     more_text = schema.TextLine(
         title=_(u'Read More Link'),
         description=_('help_more_text',
-                      default=u"Enter the text for the link in the portlet footer. "
-                               "Leave blank for no footer."),
+                      default=u"Enter the text for the link in the portlet "
+                              u"footer. Leave blank for no footer."),
         default=u'',
         required=False,
     )
@@ -97,9 +96,9 @@ class IContentPortlet(IPortletDataProvider):
     omit_border = schema.Bool(
         title=_(u"Omit portlet border"),
         description=_('help_omit_border',
-                      default=u"Tick this box if you want to render the content item "
-                               "selected above without the standard header, border "
-                               "or footer."),
+                      default=u"Tick this box if you want to render the "
+                              u"content item selected above without the "
+                              u"standard header, border or footer."),
         required=True,
         default=False)
 
@@ -110,6 +109,7 @@ class IContentPortlet(IPortletDataProvider):
                                "header to be displayed."),
         required=True,
         default=False)
+
 
 class Assignment(base.Assignment):
     """Portlet assignment.
@@ -129,7 +129,7 @@ class Assignment(base.Assignment):
     custom_header = u""
     omit_header = False
 
-    def __init__(self, portlet_title=u'', content=None, title_display=u'link', 
+    def __init__(self, portlet_title=u'', content=None, title_display=u'link',
             item_display=[u'image', u'description'], more_text=u'',
             omit_border=None, custom_header=None, omit_header=None):
         self.portlet_title = portlet_title
@@ -148,6 +148,7 @@ class Assignment(base.Assignment):
         """
         msg = _(u"Content portlet")
         return self.portlet_title or msg
+
 
 class Renderer(base.Renderer):
     """Portlet renderer.
@@ -181,43 +182,37 @@ class Renderer(base.Renderer):
                 item = item.getTranslation(lang) or item
 
         return item
-    
+
     def date(self):
         """
         Returns the item date or None if it should not be displayed.
         """
-        
         if not u'date' in self.data.item_display:
             return None
-            
         return self.content.Date()
-    
+
     def image(self):
         """
         Returns the item image or None if it should not be displayed.
         """
-        
         if not u'image' in self.data.item_display:
             return None
-            
         return self.content.restrictedTraverse('image_thumb', None)
-        
+
     def description(self):
         """
         Returns the item description or None if it should not be displayed.
         """
-
         if not u'description' in self.data.item_display:
             return None
 
         return self.content.Description()
-    
+
     def body(self):
         """
         Returns the body HTML or None if it should not be displayed.
         (or is not present on the object)
         """
-        
         if not u'body' in self.data.item_display:
             return None
 
@@ -228,16 +223,15 @@ class Renderer(base.Renderer):
             text = None
 
         return text
-        
-    
+
     def more_url(self):
-       return self.content.absolute_url()
-    
+        return self.content.absolute_url()
+
     def header(self):
         return self.data.custom_header or self.content.Title()
 
     def has_footer(self):
-       return bool(self.data.more_text)
+        return bool(self.data.more_text)
 
 
 class AddForm(base.AddForm):
@@ -253,6 +247,7 @@ class AddForm(base.AddForm):
 
     def create(self, data):
         return Assignment(**data)
+
 
 class EditForm(base.EditForm):
     """Portlet edit form.
