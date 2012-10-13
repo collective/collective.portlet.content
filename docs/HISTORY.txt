@@ -4,6 +4,8 @@ Changelog
 1.8 (unreleased)
 ----------------
 
+* repository moved to github [khink]
+
 1.7 (2011-10-27)
 ----------------
 

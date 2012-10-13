@@ -6,7 +6,7 @@ version = '1.8-dvl'
 setup(name='collective.portlet.content',
       version=version,
       description="A Plone portlet that shows a content item.",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "TODO.txt")).read() +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -18,7 +18,7 @@ setup(name='collective.portlet.content',
       keywords='plone portlet',
       author='Plone Foundation',
       author_email='plone-developers@lists.sourceforge.net',
-      url='http://plone.org',
+      url='https://github.com/collective/collective.portlet.content',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective', 'collective.portlet'],
