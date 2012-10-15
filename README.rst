@@ -1,3 +1,6 @@
+.. image:: https://secure.travis-ci.org/collective/collective.portlet.content.png
+   :target: https://travis-ci.org/collective/collective.portlet.content
+
 Introduction
 ============
 
