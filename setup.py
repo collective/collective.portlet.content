@@ -29,7 +29,7 @@ setup(name='collective.portlet.content',
       ),
       install_requires=[
           'setuptools',
-          'zope.app.component',
+          'zope.component.hooks',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
