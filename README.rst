@@ -19,7 +19,7 @@ Compatibility
 
 The product is compatible with Plone 3 and Plone 4.
 
-Tested on Plone 3.3.5 and Plone 4.0b5.
+Tested on Plone 3.3.5, Plone 4.0b5, and Plone 4.3.
 
 
 Installing

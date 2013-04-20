@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.8-dvl'
+version = '1.8.1-dvl'
 
 setup(name='collective.portlet.content',
       version=version,
@@ -29,6 +29,7 @@ setup(name='collective.portlet.content',
       ),
       install_requires=[
           'setuptools',
+          'zope.component.hooks',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

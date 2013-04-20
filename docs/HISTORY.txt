@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.8.1 (unreleased)
+
+* Fixed an issue with Plone 4.3 by adding zope.component.hooks to dependencies.
+  Portlet failed with exceptions about component.hook missing. [cuidighth] 
+
 1.8 (unreleased)
 ----------------
 
