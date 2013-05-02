@@ -4,8 +4,8 @@
 Introduction
 ============
 
-This portlet shows a content item as content in the portlet. 
-It's LinguaPlone aware, and is initially created to provide a 
+This portlet shows a content item as content in the portlet.
+It's LinguaPlone aware, and is initially created to provide a
 language-dependent address footer.
 
 Author: Lennart Regebro <regebro@gmail.com>
@@ -19,8 +19,6 @@ Compatibility
 
 The product is compatible with Plone 3 and Plone 4.
 
-Tested on Plone 3.3.5 and Plone 4.0b5.
-
 
 Installing
 ==========
@@ -33,7 +31,7 @@ Install the product in your Plone site using the Plone Control Panel
 Using
 =====
 
-Go to `@@manage-portlets`. If the product was installed properly, you'll have 
+Go to `@@manage-portlets`. If the product was installed properly, you'll have
 the option to add a Content Portlet.
 
 Next, select a content item to display. It can be any type of item. You can
@@ -52,10 +50,10 @@ errors, but you'd obviously not see the field in the portlet.
 You can set these options separately:
 
 * portlet's title as shown in `@@manage-portlets` screen
-* portlet header title as rendered on page 
+* portlet header title as rendered on page
   (use content's title or select custom)
 * hide portlet header altogether
-* conditionally show a portlet footer with a link to the content item 
+* conditionally show a portlet footer with a link to the content item
   (link text is configurable)
 * disable the portlet border
 
