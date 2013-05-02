@@ -1,9 +1,10 @@
 Changelog
 =========
 
-1.8 (unreleased)
+1.8 (2013-05-02)
 ----------------
 
+* pep8 and Plone 4.3 compatibility [vangheem]
 * repository moved to github [khink]
 
 1.7 (2011-10-27)
@@ -11,7 +12,7 @@ Changelog
 
 * use normal Manage Portlets permission instead of cmf.ManagePortal.
   [vangheem]
-* small fix in vocabularies.py to make it compatible with plone4.1 
+* small fix in vocabularies.py to make it compatible with plone4.1
   [huub_bouma]
 
 1.6 (2011-02-15)
@@ -40,7 +41,7 @@ Changelog
 1.3 (2010-07-29)
 ----------------
 
-* Plone 4 compatibility (while maintaining Plone 3 compatibility) 
+* Plone 4 compatibility (while maintaining Plone 3 compatibility)
   [pcaro]
 
 * Added options to display fields other than the body text.
@@ -58,12 +59,12 @@ Changelog
 * Test coverage with translated content portlets via LinguaPlone
   [andrewb]
 
-* Improved test coverage over original paster created boilerplate portlet 
-  tests.  Now verify the portlet renderer contains the body text of the 
+* Improved test coverage over original paster created boilerplate portlet
+  tests.  Now verify the portlet renderer contains the body text of the
   chosen content item.
   [andrewb]
 
-* Fixed getTranslation AttributeError when product is used outside the 
+* Fixed getTranslation AttributeError when product is used outside the
   context of LinguaPlone aware content.
   [andrewb]
 
