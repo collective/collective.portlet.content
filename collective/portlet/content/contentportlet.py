@@ -22,7 +22,8 @@ from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.memoize import instance
 
 from collective.portlet.content import ContentPortletMessageFactory as _
-
+from zope.i18nmessageid import MessageFactory
+__ = MessageFactory("plone")
 
 class IContentPortlet(IPortletDataProvider):
     """A portlet
@@ -146,7 +147,7 @@ class Assignment(base.Assignment):
         """This property is used to give the title of the portlet in the
         "manage portlets" screen.
         """
-        msg = _(u"Content portlet")
+        msg = __(u"Content portlet")
         return self.portlet_title or msg
 
 

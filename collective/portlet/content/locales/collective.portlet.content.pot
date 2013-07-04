@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-19 15:59+0000\n"
+"POT-Creation-Date: 2013-07-04 12:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,35 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.portlet.content\n"
 
-#: ../vocabularies.py:36
+#: ../vocabularies.py:39
 msgid "Body"
 msgstr ""
 
-#: ../contentportlet.py:65
+#: ../contentportlet.py:66
 msgid "Content Item"
 msgstr ""
 
-#: ../contentportlet.py:149
-msgid "Content portlet"
-msgstr ""
-
-#: ../vocabularies.py:33
+#: ../vocabularies.py:36
 msgid "Date"
 msgstr ""
 
-#: ../vocabularies.py:35
+#: ../vocabularies.py:38
 msgid "Description"
 msgstr ""
 
-#: ../vocabularies.py:19
+#: ../vocabularies.py:21
 msgid "Display as a link"
 msgstr ""
 
-#: ../vocabularies.py:18
+#: ../vocabularies.py:20
 msgid "Display as text"
 msgstr ""
 
-#: ../vocabularies.py:17
+#: ../vocabularies.py:19
 msgid "Hidden"
 msgstr ""
 
-#: ../vocabularies.py:34
+#: ../vocabularies.py:37
 msgid "Image"
 msgstr ""
 
@@ -57,7 +53,7 @@ msgstr ""
 msgid "Item Display"
 msgstr ""
 
-#: ../contentportlet.py:55
+#: ../contentportlet.py:56
 msgid "Item Title in portlet content"
 msgstr ""
 
@@ -112,7 +108,7 @@ msgid "help_portlet_title"
 msgstr ""
 
 #. Default: "Do you want to render the item's title inside the portlet content, and if yes, how?\nNote that by default, the item's title will be displayed in the portlet header."
-#: ../contentportlet.py:56
+#: ../contentportlet.py:57
 msgid "help_title_display"
 msgstr ""
 

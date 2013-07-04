@@ -1,0 +1,29 @@
+# German translation for collective.portlet.content
+# Harald Friessnegger <harald@webmeisterei.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: collective.portlet.content\n"
+"POT-Creation-Date: 2013-07-04 11:50+0000\n"
+"PO-Revision-Date: 2013-07-04 14:06+0200\n"
+"Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"Language: de\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: ../profiles/default/portlets.xml
+msgid "A portlet that shows a content item."
+msgstr "Portlet das einen referenzierten Inhalt anzeigt."
+
+#: ../contentportlet.py:149
+#: ../profiles/default/portlets.xml
+msgid "Content portlet"
+msgstr "Inhalts Portlet"
+

@@ -1,120 +1,115 @@
-# Italian translation for collective.portlet.content
-# Luca Fabbri <luca.fabbri@redturtle.it>, 2011.
+# German translation for collective.portlet.content
+# Harald Friessnegger <harald@webmeisterei.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.portlet.content\n"
 "POT-Creation-Date: 2013-07-04 12:10+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: Luca Fabbri <luca.fabbri@redturtle.net>\n"
-"Language-Team: RedTurtle Technology <sviluppoplone@redturtle.net>\n"
+"PO-Revision-Date: 2013-07-04 13:35+0200\n"
+"Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.portlet.content\n"
+"Language: de\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../vocabularies.py:39
 msgid "Body"
-msgstr "Testo"
+msgstr "Haupttext"
 
 #: ../contentportlet.py:66
 msgid "Content Item"
-msgstr "Contenuto"
+msgstr "Referenzierter Inhalt"
 
 #: ../vocabularies.py:36
 msgid "Date"
-msgstr "Data"
+msgstr "Datum"
 
 #: ../vocabularies.py:38
 msgid "Description"
-msgstr "Descrizione"
+msgstr "Beschreibung"
 
 #: ../vocabularies.py:21
 msgid "Display as a link"
-msgstr "Visualizza come collegamento"
+msgstr "Darstellung als Link"
 
 #: ../vocabularies.py:20
 msgid "Display as text"
-msgstr "Visualizza come testo"
+msgstr "Darstellung als Text"
 
 #: ../vocabularies.py:19
 msgid "Hidden"
-msgstr "Nascosto"
+msgstr "Versteckt"
 
 #: ../vocabularies.py:37
 msgid "Image"
-msgstr "Immagine"
+msgstr "Bild"
 
 #: ../contentportlet.py:75
 msgid "Item Display"
-msgstr "Visualizzazione"
+msgstr "Angezeigte Felder"
 
 #: ../contentportlet.py:56
 msgid "Item Title in portlet content"
-msgstr "Titolo del contenuto nella portlet"
+msgstr "Inhaltstitel im Portlet"
 
 #: ../contentportlet.py:98
 msgid "Omit portlet border"
-msgstr "Ometti bordo della portlet"
+msgstr "Rahmen des Portlets verbergen"
 
 #: ../contentportlet.py:107
 msgid "Omit portlet header"
-msgstr "Ometti intestazione della portlet"
+msgstr "Kopfzeile verbergen"
 
 #: ../contentportlet.py:37
 msgid "Portlet Title"
-msgstr "Titolo portlet"
+msgstr "Titel des Portlets"
 
 #: ../contentportlet.py:47
 msgid "Portlet header"
-msgstr "Intestazione portlet"
+msgstr "Kopfzeile des Portlets"
 
 #: ../contentportlet.py:89
 msgid "Read More Link"
-msgstr "Link \"Leggi il resto\""
+msgstr "Weiterlesen Link"
 
 #. Default: "Set a custom header (title) for the rendered portlet. Leave empty to use the selected content's title."
 #: ../contentportlet.py:48
 msgid "help_custom_header"
-msgstr ""
-"Imposta una intestazione (titolo) per la portlet.\n"
-"Lascia vuoto per usare il titolo del contenuto."
+msgstr "Hier kann die Kopfzeile des Portlets angepasst werden. Leer lassen um den Titel des referenzierten Inhalts zu verwenden."
 
 #. Default: "Select which of the selected item's fields will be displayed in the portlet's content area. Note that selecting Body (text) will not work for an Image."
 #: ../contentportlet.py:76
 msgid "help_item_display"
-msgstr "Seleziona quale dei campi del contenuto saranno visualizzati nell'area della portlet.Nota che selezionare \"Testo\" non funzionerà per una Immagine."
+msgstr "Bitte wählen Sie aus welche Felder im Inhaltsbereich des Portlets angezeigt werden. Beachten Sie, dass Haupttext bei Bildern nicht verfügbar ist."
 
 #. Default: "Enter the text for the link in the portlet footer. Leave blank for no footer."
 #: ../contentportlet.py:90
 msgid "help_more_text"
-msgstr "Inserisci il testo del link nel footer. Lascia vuoto per non avere footer."
+msgstr "Geben Sie den Text für den Link zum referenzierten Inhalt in der Fußzeile des Portlets an. Leer lassen um keine Fußzeile anzuzeigen."
 
 #. Default: "Tick this box if you want to render the content item selected above without the standard header, border or footer."
 #: ../contentportlet.py:99
 msgid "help_omit_border"
-msgstr "Seleziona se vuoi visualizzare il contenuto selezionato sopra senza la solita intestazione, bordo e footer. "
+msgstr "Markieren Sie diese Option, wenn der Inhalt ohne Kopf- und Fußzeile sowie ohne Rahmen angezeigt werden soll."
 
 #. Default: "Tick this box if you don't want the portlet header to be displayed."
 #: ../contentportlet.py:108
 msgid "help_omit_header"
-msgstr "Seleziona se non vuoi che l'intestazione della portlet sia visualizzata."
+msgstr "Markieren Sie diese Option, wenn die Kopfzeile nicht angezeigt werden soll."
 
 #. Default: "Enter a title for this portlet. This property is used as the portlet's title in the \"@@manage-portlets\" screen. Leave blank for \"Content portlet\"."
 #: ../contentportlet.py:38
 msgid "help_portlet_title"
-msgstr ""
-"Inserisci un titolo per questa portlet.\n"
-"Questa proprietà è usata come titolo della portlet nella schermata \"@@manage-portlets\".\n"
-"Lascia vuoto per avere \"Portlet contenuto\"."
+msgstr "Geben sie den Titel des Portlets an der in der Portletverwaltung angezeigt wird.  Leer lassen um \"Inhalts Portlet\" zu verwenden."
 
 #. Default: "Do you want to render the item's title inside the portlet content, and if yes, how?\nNote that by default, the item's title will be displayed in the portlet header."
 #: ../contentportlet.py:57
 msgid "help_title_display"
-msgstr ""
-"Vuoi che venga visualizzato il titolo del contenuto dentro alla portlet e, se sì, come?\n"
-"Nota che di base, il titolo del contenuto viene visualizzato nell'instestazione della portlet."
+msgstr "Wählen Sie aus ob und wie der Titel des referenzierten Inhalts innerhalb des Portlets angezeigt werden soll. Beachten sie, dass der Titel standardmäßig bereits in der Kopfzeile verwendet wird."
 
