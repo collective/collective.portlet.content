@@ -1,0 +1,11 @@
+*.pyc
+*.wpr
+*.egg-info
+*.mo
+.installed.cfg
+bin
+lib
+include
+var
+parts
+develop-eggs
