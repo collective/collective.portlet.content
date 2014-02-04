@@ -8,6 +8,9 @@ Changelog
   to i18:domain plone to make them translateable in the
   add portlet dropdown, too [fRiSi]
   
+* Fixed #1: The defaults in the form and the defaults on the Assignment
+  were different. [regebro]
+  
 1.8 (2013-05-02)
 ----------------
 

@@ -124,14 +124,14 @@ class Assignment(base.Assignment):
     portlet_title = u''
     content = None
     title_display = u'hidden'
-    item_display = [u'image', u'description']
+    item_display = [u'date', u'image', u'description', u'body']
     more_text = u''
     omit_border = False
     custom_header = u""
     omit_header = False
 
     def __init__(self, portlet_title=u'', content=None, title_display=u'link',
-            item_display=[u'image', u'description'], more_text=u'',
+            item_display=[u'date', u'image', u'description', u'body'], more_text=u'',
             omit_border=None, custom_header=None, omit_header=None):
         self.portlet_title = portlet_title
         self.content = content
