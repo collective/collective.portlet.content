@@ -5,6 +5,7 @@ from plone.app.portlets.portlets import base
 
 from zope import schema
 from zope.formlib import form
+from AccessControl import getSecurityManager
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
@@ -171,17 +172,23 @@ class Renderer(base.Renderer):
             return None
 
         portal_path = getToolByName(self.context, 'portal_url').getPortalPath()
-        item = self.context.restrictedTraverse(
+        item = self.context.unrestrictedTraverse(
             str(portal_path + self.data.content),
             None
         )
+        if item is None:
+            return None
 
         if LINGUAPLONE_SUPPORT:
             tool = getToolByName(self.context, 'portal_languages', None)
             if tool is not None and ITranslatable.providedBy(item):
                 lang = tool.getLanguageBindings()[0]
-                item = item.getTranslation(lang) or item
+                xlate_item = item.getTranslation(lang)
+                if xlate_item is not None:
+                    item = xlate_item
 
+        if not getSecurityManager().checkPermission('View', item):
+            return None
         return item
 
     def date(self):
