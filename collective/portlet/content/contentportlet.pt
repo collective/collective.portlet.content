@@ -11,7 +11,7 @@
   </div>
 
   <dl tal:condition="not: view/data/omit_border"
-      class="portlet portletContent"
+      tal:attributes="class string:portlet portletContent portlet-content-${view/content/id}"
       i18n:domain="plone">
 
     <dt tal:condition="not:view/data/omit_header" class="portletHeader">

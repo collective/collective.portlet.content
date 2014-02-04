@@ -11,6 +11,8 @@ Changelog
 * Fixed #1: The defaults in the form and the defaults on the Assignment
   were different. [regebro]
   
+* Fixed #5: Added portlet id based class to the portlet tag. [regebro]
+  
 1.8 (2013-05-02)
 ----------------
 
