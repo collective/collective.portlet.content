@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.9 (unreleased)
-----------------
+1.8.1 (2014-02-04)
+------------------
 
 * Added German translation and moved portlet title and description
   to i18:domain plone to make them translateable in the
