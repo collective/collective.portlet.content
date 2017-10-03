@@ -2,9 +2,9 @@
     tal:condition="nocall:view/content"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:tal="http://xml.zope.org/namespaces/tal"
-	xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-	i18n:domain="collective.portlet.content">
+  i18n:domain="collective.portlet.content">
 
   <div tal:condition="view/data/omit_border" class="portletContent">
     <metal:body use-macro="template/macros/body" />
@@ -26,12 +26,15 @@
     </dt>
 
     <dd class="portletItem odd">
+
       <metal:macro define-macro="body">
+        <tal:contentitem tal:define="content view/content">
+
         <h3 class="item-title"
             tal:condition="python:view.data.title_display in [u'link', u'text']">
-          <a tal:attributes="href view/content/absolute_url;"
+          <a tal:attributes="href content/getURL;"
              tal:omit-tag="python:view.data.title_display != u'link'"
-             tal:content="view/content/Title"
+             tal:content="content/Title"
              href="">
             Item title
           </a>
@@ -43,16 +46,6 @@
            class="item-date">
           Jan 10, 2010
         </p>
-
-        <div class="item-image"
-             tal:define="image view/image|nothing"
-             tal:condition="image">
-          <a tal:attributes="href view/content/absolute_url;"
-             tal:omit-tag="python:view.data.title_display != u'link'"
-             href="">
-            <img tal:replace="structure image/tag" />
-          </a>
-        </div>
 
         <p tal:define="description view/description|nothing;"
            tal:condition="description"
@@ -71,6 +64,8 @@
           <span class="portletBottomLeft"></span>
           <span class="portletBottomRight"></span>
         </tal:corners>
+
+      </tal:contentitem>
       </metal:macro>
     </dd>
 
