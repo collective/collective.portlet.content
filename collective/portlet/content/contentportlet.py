@@ -10,17 +10,10 @@ from AccessControl import getSecurityManager
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
-try:
-    from Products.LinguaPlone.interfaces import ITranslatable
-    LINGUAPLONE_SUPPORT = True
-except ImportError:
-    # Linguaplone not installed
-    LINGUAPLONE_SUPPORT = False
-
-from plone.app.vocabularies.catalog import SearchableTextSourceBinder
-from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
-from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
+from plone.app.vocabularies.catalog import CatalogSource
 from plone.memoize import instance
+from plone.app.uuid.utils import uuidToObject, uuidToCatalogBrain
+from plone.memoize.instance import memoize
 
 from collective.portlet.content import ContentPortletMessageFactory as _
 from zope.i18nmessageid import MessageFactory
@@ -64,12 +57,10 @@ class IContentPortlet(IPortletDataProvider):
         default=u'hidden',
         required=True,
     )
+
     content = schema.Choice(title=_(u"Content Item"),
         required=True,
-        source=SearchableTextSourceBinder(
-            {},
-            default_query='path:'
-        )
+        source=CatalogSource()
     )
 
     item_display = schema.List(
@@ -82,7 +73,7 @@ class IContentPortlet(IPortletDataProvider):
         value_type=schema.Choice(
             vocabulary='collective.portlet.content.item_display_vocabulary',
         ),
-        default=[u'date', u'image', u'description', u'body'],
+        default=[u'date', u'description'],
         required=False,
     )
 
@@ -125,14 +116,14 @@ class Assignment(base.Assignment):
     portlet_title = u''
     content = None
     title_display = u'hidden'
-    item_display = [u'date', u'image', u'description', u'body']
+    item_display = [u'date', u'description']
     more_text = u''
     omit_border = False
     custom_header = u""
     omit_header = False
 
     def __init__(self, portlet_title=u'', content=None, title_display=u'link',
-            item_display=[u'date', u'image', u'description', u'body'], more_text=u'',
+            item_display=[u'date', u'description'], more_text=u'',
             omit_border=None, custom_header=None, omit_header=None):
         self.portlet_title = portlet_title
         self.content = content
@@ -149,7 +140,7 @@ class Assignment(base.Assignment):
         "manage portlets" screen.
         """
         msg = __(u"Content portlet")
-        return self.portlet_title or msg
+        return getattr(uuidToCatalogBrain(self.content), 'Title', None) or msg
 
 
 class Renderer(base.Renderer):
@@ -162,6 +153,9 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('contentportlet.pt')
 
+    def __init__(self, *args):
+        base.Renderer.__init__(self, *args)
+
     @instance.memoizedproperty
     def content(self):
         """
@@ -171,24 +165,13 @@ class Renderer(base.Renderer):
         if not self.data.content:
             return None
 
-        portal_path = getToolByName(self.context, 'portal_url').getPortalPath()
-        item = self.context.unrestrictedTraverse(
-            str(portal_path + self.data.content),
-            None
-        )
+        item = uuidToCatalogBrain(self.data.content)
         if item is None:
             return None
 
-        if LINGUAPLONE_SUPPORT:
-            tool = getToolByName(self.context, 'portal_languages', None)
-            if tool is not None and ITranslatable.providedBy(item):
-                lang = tool.getLanguageBindings()[0]
-                xlate_item = item.getTranslation(lang)
-                if xlate_item is not None:
-                    item = xlate_item
-
         if not getSecurityManager().checkPermission('View', item):
             return None
+
         return item
 
     def date(self):
@@ -197,15 +180,7 @@ class Renderer(base.Renderer):
         """
         if not u'date' in self.data.item_display:
             return None
-        return self.content.Date()
-
-    def image(self):
-        """
-        Returns the item image or None if it should not be displayed.
-        """
-        if not u'image' in self.data.item_display:
-            return None
-        return self.content.restrictedTraverse('image_thumb', None)
+        return self.content.Date
 
     def description(self):
         """
@@ -214,7 +189,7 @@ class Renderer(base.Renderer):
         if not u'description' in self.data.item_display:
             return None
 
-        return self.content.Description()
+        return self.content.Description
 
     def body(self):
         """
@@ -226,17 +201,17 @@ class Renderer(base.Renderer):
 
         # Currently nothing stops you from trying to get text from an Image
         if hasattr(self.content, 'getText'):
-            text = self.content.getText()
+            text = self.content.getText
         else:
             text = None
 
         return text
 
     def more_url(self):
-        return self.content.absolute_url()
+        return self.content.getURL
 
     def header(self):
-        return self.data.custom_header or self.content.Title()
+        return self.data.custom_header or self.content.Title
 
     def has_footer(self):
         return bool(self.data.more_text)
@@ -249,9 +224,10 @@ class AddForm(base.AddForm):
     zope.formlib which fields to display. The create() method actually
     constructs the assignment that is being added.
     """
-    form_fields = form.Fields(IContentPortlet)
-    form_fields['content'].custom_widget = UberSelectionWidget
-    form_fields['item_display'].custom_widget = MultiCheckBoxVocabularyWidget
+
+    schema = IContentPortlet
+    label = _(u"Add Content Portlet")
+    ddescription = _(u"A portlet that shows a content item.")
 
     def create(self, data):
         return Assignment(**data)
@@ -263,6 +239,7 @@ class EditForm(base.EditForm):
     This is registered with configure.zcml. The form_fields variable tells
     zope.formlib which fields to display.
     """
-    form_fields = form.Fields(IContentPortlet)
-    form_fields['content'].custom_widget = UberSelectionWidget
-    form_fields['item_display'].custom_widget = MultiCheckBoxVocabularyWidget
+
+    schema = IContentPortlet
+    label = _(u"Edit Content Portlet")
+    description = _(u"A portlet that shows a content item.")
