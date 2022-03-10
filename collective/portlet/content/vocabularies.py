@@ -32,7 +32,9 @@ class ItemDisplayVocabulary(object):
             [SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
                 for pair in [
                     (u'date', _(u'Date')),
-                    (u'description', _(u'Description'))
+                    (u'description', _(u'Description')),
+                    (u'image', _(u'Image')),
+                    (u'body', _(u'Body')),
             ]]
         )
 ItemDisplayVocabularyFactory = ItemDisplayVocabulary()
