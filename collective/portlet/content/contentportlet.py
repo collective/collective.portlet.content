@@ -1,23 +1,19 @@
-from zope.interface import implements
-
-from plone.portlets.interfaces import IPortletDataProvider
-from plone.app.portlets.portlets import base
-
-from zope import schema
-from zope.formlib import form
 from AccessControl import getSecurityManager
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
-
-from plone.app.vocabularies.catalog import CatalogSource
-from plone.memoize import instance
-from plone.app.uuid.utils import uuidToObject, uuidToCatalogBrain
-from plone.memoize.instance import memoize
-
 from collective.portlet.content import ContentPortletMessageFactory as _
+from plone.app.portlets.portlets import base
+from plone.app.uuid.utils import uuidToCatalogBrain
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives
+from plone.memoize import instance
+from plone.memoize.instance import memoize
+from plone.portlets.interfaces import IPortletDataProvider
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope import schema
 from zope.i18nmessageid import MessageFactory
+from zope.interface import implementer
+
 __ = MessageFactory("plone")
+
 
 class IContentPortlet(IPortletDataProvider):
     """A portlet
@@ -58,10 +54,12 @@ class IContentPortlet(IPortletDataProvider):
         required=True,
     )
 
-    content = schema.Choice(title=_(u"Content Item"),
+    content = schema.Choice(
+        title=_(u"Content Item"),
+        vocabulary="plone.app.vocabularies.Catalog",
         required=True,
-        source=CatalogSource()
     )
+    directives.widget("content", RelatedItemsFieldWidget)
 
     item_display = schema.List(
         title=_(u'Item Display'),
@@ -92,7 +90,7 @@ class IContentPortlet(IPortletDataProvider):
                       default=u"Tick this box if you want to render the "
                               u"content item selected above without the "
                               u"standard header, border or footer."),
-        required=True,
+        required=False,
         default=False)
 
     omit_header = schema.Bool(
@@ -100,18 +98,17 @@ class IContentPortlet(IPortletDataProvider):
         description=_('help_omit_header',
                       default=u"Tick this box if you don't want the portlet "
                                "header to be displayed."),
-        required=True,
+        required=False,
         default=False)
 
 
+@implementer(IContentPortlet)
 class Assignment(base.Assignment):
     """Portlet assignment.
 
     This is what is actually managed through the portlets UI and associated
     with columns.
     """
-
-    implements(IContentPortlet)
 
     portlet_title = u''
     content = None
@@ -208,7 +205,7 @@ class Renderer(base.Renderer):
         return text
 
     def more_url(self):
-        return self.content.getURL
+        return self.content.getURL()
 
     def header(self):
         return self.data.custom_header or self.content.Title
