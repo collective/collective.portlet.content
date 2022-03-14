@@ -2,6 +2,7 @@ from AccessControl import getSecurityManager
 from collective.portlet.content import ContentPortletMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.app.uuid.utils import uuidToCatalogBrain
+from plone.app.textfield.value import RichTextValue
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.memoize import instance
@@ -175,9 +176,22 @@ class Renderer(base.Renderer):
         """
         Returns the item date or None if it should not be displayed.
         """
-        if not u'date' in self.data.item_display:
-            return None
+        if u'date' not in self.data.item_display:
+            return
         return self.content.Date
+
+    def image(self):
+        """
+        Returns the item image or None if it should not be displayed.
+        """
+        if u'image' not in self.data.item_display:
+            return
+        obj = self.content.getObject()
+        image = getattr(obj.aq_base, 'image', None)
+        if not image:
+            return
+        scaled_image = obj.restrictedTraverse("@@images").scale('image', scale='preview')
+        return scaled_image
 
     def description(self):
         """
@@ -193,15 +207,16 @@ class Renderer(base.Renderer):
         Returns the body HTML or None if it should not be displayed.
         (or is not present on the object)
         """
-        if not u'body' in self.data.item_display:
+        if u'body' not in self.data.item_display:
             return None
 
         # Currently nothing stops you from trying to get text from an Image
-        if hasattr(self.content, 'getText'):
-            text = self.content.getText
-        else:
-            text = None
-
+        obj = self.content.getObject()
+        text = getattr(obj.aq_base, 'text', None)
+        if not text:
+            return
+        if isinstance(text, RichTextValue):
+            text = text.output
         return text
 
     def more_url(self):

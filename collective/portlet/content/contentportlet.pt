@@ -1,4 +1,4 @@
-<html tal:omit-tag="" 
+<html tal:omit-tag=""
     tal:condition="nocall:view/content"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -46,6 +46,16 @@
            class="item-date">
           Jan 10, 2010
         </p>
+
+        <div class="item-image"
+             tal:define="scaled_image python: view.image()"
+             tal:condition="python: scaled_image">
+          <a tal:attributes="href content/getURL;"
+             tal:omit-tag="python:view.data.title_display != u'link'"
+             href="">
+            <img tal:replace="structure python: scaled_image.tag(css_class='figure-img img-fluid')" />
+          </a>
+        </div>
 
         <p tal:define="description view/description|nothing;"
            tal:condition="description"
