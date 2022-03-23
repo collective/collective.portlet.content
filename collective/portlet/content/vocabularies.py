@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
-
-from zope.interface import implements
+from collective.portlet.content import ContentPortletMessageFactory as _
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
-from collective.portlet.content import ContentPortletMessageFactory as _
 
-
+@implementer(IVocabularyFactory)
 class TitleDisplayVocabulary(object):
     """Vocabulary factory for title_display.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary(
@@ -24,18 +22,18 @@ class TitleDisplayVocabulary(object):
 TitleDisplayVocabularyFactory = TitleDisplayVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class ItemDisplayVocabulary(object):
     """Vocabulary factory for item_display.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary(
             [SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
                 for pair in [
                     (u'date', _(u'Date')),
-                    (u'image', _(u'Image')),
                     (u'description', _(u'Description')),
+                    (u'image', _(u'Image')),
                     (u'body', _(u'Body')),
             ]]
         )

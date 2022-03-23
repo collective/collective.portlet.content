@@ -4,7 +4,11 @@ Changelog
 1.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Python 3.
+  [pbauer]
+
+- Add support for Plone 5.
+  [andreesg]
 
 
 1.8.1 (2014-02-04)
@@ -13,15 +17,15 @@ Changelog
 * Added German translation and moved portlet title and description
   to i18:domain plone to make them translateable in the
   add portlet dropdown, too [fRiSi]
-  
+
 * Fixed #1: The defaults in the form and the defaults on the Assignment
   were different. [regebro]
-  
+
 * Fixed #5: Added portlet id based class to the portlet tag. [regebro]
 
 * Fixed #8: You now only need View permission on the content, not on
   its parents. [regebro]
-  
+
 1.8 (2013-05-02)
 ----------------
 
